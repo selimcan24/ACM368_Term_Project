@@ -1,62 +1,201 @@
-
-body{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #23042b, #996590);
+/* =========================================
+   VARIABLES & BASE SETUP
+   ========================================= */
+:root {
+    --bg-dark: #0d1117;         /* Deep background */
+    --bg-card: #161b22;         /* Slightly lighter for cards */
+    --text-main: #c9d1d9;       /* Off-white text */
+    --text-muted: #8b949e;      /* Gray for secondary text */
+    --accent: #58a6ff;          /* Sleek gamer blue */
+    --accent-hover: #3182ce;
+    --border-color: #30363d;
+    --success: #2ea043;
+    --danger: #f85149;
 }
 
-.login{
-  background: #faf7f7;
-  padding: 30px;
-  border-radius: 12px;
-  width: 300px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-h2{
-  text-align: center;
-  margin-bottom: 20px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-label,input {
-  margin-bottom: 15px;
+h1, h2, h3 { color: #ffffff; margin-bottom: 15px; }
+hr { border: 0; height: 1px; background: var(--border-color); margin: 30px 0; }
+a { color: var(--accent); text-decoration: none; transition: 0.2s; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+/* =========================================
+   NAVIGATION & FORMS
+   ========================================= */
+.nav-bar {
+    background-color: var(--bg-card);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 5px;
+    font-family: inherit;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
 }
 
-input[type="email"],
-input[type="password"]{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 6px;
-  outline: none;
-  transition: 0.3s;
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.2s;
+}
+.btn:hover {
+    background-color: var(--accent-hover);
+    color: #ffffff;
+    text-decoration: none;
 }
 
-input[type="email"],
-input[type="password"]{
-  border-color: #d8dcd9;
+/* =========================================
+   GAME GRID & CARDS
+   ========================================= */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
 }
 
-input[type="submit"]{
-  width: 100%;
-  padding: 10px;
-  background: #fe4f4f;
-  border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
+.game-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-input[type="submit"]:hover{
-  background: #ff8400;
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
 }
+
+.game-cover {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.placeholder-cover {
+    width: 100%;
+    height: 280px;
+    background: #21262d;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.game-card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.game-card p { color: var(--text-muted); font-size: 0.9rem; }
+.stars { color: #e3b341; font-size: 1.2rem; letter-spacing: 2px; margin: 5px 0;}
+
+
+
+		/* =========================================
+ 			  PROFILE PAGE OVERHAUL
+  		  ========================================= */
+.profile-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding-bottom: 20px; 
+    border-bottom: 1px solid var(--border-color); 
+    margin-bottom: 30px; 
+}
+.profile-user-info { display: flex; align-items: center; gap: 20px; }
+.profile-avatar { 
+    width: 90px; 
+    height: 90px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 1px solid var(--border-color); 
+}
+.profile-stats { display: flex; gap: 25px; text-align: center; }
+.stat-number { font-size: 1.5rem; font-weight: bold; color: var(--text-main); display: block; line-height: 1; }
+.stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* The Two-Column Grid */
+.profile-layout { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; /* Left side takes up 2/3, right side 1/3 */
+    gap: 40px; 
+}
+
+/* Sections & Posters */
+.section-heading { 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    border-bottom: 1px solid var(--border-color); 
+    padding-bottom: 5px; 
+    margin-bottom: 15px; 
+}
+.poster-row { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px; 
+    margin-bottom: 40px; 
+}
+.mini-poster { 
+    border-radius: 4px; 
+    width: 100%; 
+    height: 200px;
+    object-fit: cover; 
+    border: 1px solid transparent; 
+    transition: border-color 0.2s; 
+}
+.mini-poster:hover { border-color: var(--accent); }
+
+/* Sidebar Diary List */
+.diary-list { list-style: none; }
+.diary-item { 
+    display: flex; 
+    padding: 8px 0; 
+    border-bottom: 1px solid var(--border-color); 
+    font-size: 0.9rem; 
+}
+.diary-date { color: var(--text-muted); width: 50px; font-size: 0.8rem; padding-top: 2px;}
+.diary-title { color: var(--text-main); flex-grow: 1; font-weight: bold; }
+.diary-rating { color: #e3b341; font-size: 0.9rem; letter-spacing: 1px;}

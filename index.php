@@ -1,61 +1,59 @@
-
 <?php
 session_start();
-//require('db.php');
+require 'db.php';
 
-$emailError = "";
-$passwordError = "";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $email = trim($_POST['Email'] ?? '');
-    $password = trim($_POST['Password'] ?? '');
-
-    //DB
-    //$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    //$stmt->execute([$email]);
-    //$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$user) {
-    $emailError = "Email not match";
-    }else {
-    if (!password_verify($password, $user['password'])) {
-        $passwordError = "Password not match";
-    } else {
-        
-        $_SESSION['user_id'] = $user['id'];
-
-        //header("Location: Home.php");
-        exit;
-    }
-}   
-}
+$sql = "SELECT * FROM games ORDER BY created_at DESC";
+$stmt = $pdo->query($sql);
+$games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Game-Boxd</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="login">
-    <h2>Login Page</h2><br><br>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-        <p>
-        <label>Email:</label>
-        <input type="email" name="Email" value="<?php echo htmlspecialchars($_POST['Email']?? '') ?>" placeholder="Enter a Email">
-        <span style="color:red;"><?php echo $emailError ?? '' ?></span>
-        </p>
-        <p>
-        <label>Password:</label>
-        <input type="password" name="Password" value="<?php echo htmlspecialchars($_POST['Password']?? '') ?>" placeholder="Enter a Password">
-        <span style="color:red;"><?php echo $passwordError ?? '' ?></span>
-        </p>
-        <input type="submit" name="submit" value="Login">
+    
+    <?php include 'nav.php'; ?>
 
-        <a href="register.php">Create new accaunt</a>
-    </form>
-</div>
+    <h2>Latest Games</h2>
+    
+    <?php if(empty($games)): ?>
+        <p>No games have been added yet. Be the first to add one!</p>
+    <?php else: ?>
+        <div class="game-grid">
+            <?php foreach($games as $game): ?>
+                
+                <div class="game-card">
+                    
+                    <a href="game.php?id=<?= $game['id'] ?>">
+                        <?php if(!empty($game['cover_url'])): ?>
+                            <img src="<?= htmlspecialchars($game['cover_url']) ?>" alt="Cover for <?= htmlspecialchars($game['title']) ?>" class="game-cover">
+                        <?php else: ?>
+                            <div class="placeholder-cover">No Image</div>
+                        <?php endif; ?>
+                    </a>
+                    
+                    <h3>
+                        <a href="game.php?id=<?= $game['id'] ?>" style="color: inherit; text-decoration: none;">
+                            <?= htmlspecialchars($game['title']) ?>
+                        </a>
+                    </h3>
+                    
+                    <p><?= htmlspecialchars($game['developer']) ?> (<?= htmlspecialchars($game['release_year']) ?>)</p>
+                    
+                    <?php if(isset($_SESSION['user_id'])): ?>
+                        <div style="margin-top: 15px;">
+                            <a href="log_game.php?game_id=<?= $game['id'] ?>" class="btn">Log this game</a>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
 </body>
 </html>
