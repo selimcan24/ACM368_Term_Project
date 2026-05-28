@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2026 at 12:11 PM
+-- Generation Time: May 28, 2026 at 12:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,11 @@ CREATE TABLE `games` (
 
 INSERT INTO `games` (`id`, `title`, `release_year`, `developer`, `cover_url`, `description`, `created_at`) VALUES
 (1, 'Devil May Cry 3', 2005, 'Capcom', 'https://upload.wikimedia.org/wikipedia/en/7/76/Devil_May_Cry_3_boxshot.jpg', 'Devil May Cry 3: Dante\'s Awakening is a 2005 action-adventure game developed and published by Capcom for the PlayStation 2. The game is a prequel to the original Devil May Cry, featuring a younger Dante.', '2026-05-28 09:29:11'),
-(2, 'Silent Hill 2', 2001, 'Konami', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrF7EFmbp_rvrBMoxVkghdg5Gy9FzdBxqBxQ&s', 'Silent Hill 2 is a 2001 survival horror video game developed by Team Silent, a group in Konami Computer Entertainment Tokyo, and published by Konami for the PlayStation 2.', '2026-05-28 09:35:54');
+(2, 'Silent Hill 2', 2001, 'Konami', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrF7EFmbp_rvrBMoxVkghdg5Gy9FzdBxqBxQ&s', 'Silent Hill 2 is a 2001 survival horror video game developed by Team Silent, a group in Konami Computer Entertainment Tokyo, and published by Konami for the PlayStation 2.', '2026-05-28 09:35:54'),
+(3, 'Resident Evil 1', 1996, 'Capcom', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Resident_Evil_1_cover.png/250px-Resident_Evil_1_cover.png', 'Resident Evil is a 1996 survival horror video game developed and published by Capcom for the PlayStation. It is the first main installment in Capcom\'s Resident Evil series.', '2026-05-28 10:23:47'),
+(4, 'Cyberpunk 2077', 2020, 'CD Project RED', 'https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg', 'Cyberpunk 2077 is a 2020 action role-playing game developed by CD Projekt Red and published by CD Projekt. Based on Mike Pondsmith\'s Cyberpunk tabletop game series, the plot is set in the fictional metropolis of Night City in California, within the dystopian Cyberpunk universe.', '2026-05-28 10:24:28'),
+(5, 'Elden Ring', 2022, 'FromSoftware Inc', 'https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg', 'Elden Ring is a 2022 action role-playing game directed by Hidetaka Miyazaki with worldbuilding provided by the American fantasy writer George R. R. Martin.', '2026-05-28 10:25:31'),
+(6, 'Bloodborne', 2015, 'FromSoftware Inc', 'https://upload.wikimedia.org/wikipedia/en/6/68/Bloodborne_Cover_Wallpaper.jpg', 'Bloodborne is a 2015 action role-playing game, developed by FromSoftware and published by Sony Computer Entertainment for the PlayStation 4.', '2026-05-28 10:26:02');
 
 -- --------------------------------------------------------
 
@@ -126,7 +130,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `game_logs`
